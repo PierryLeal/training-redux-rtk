@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { decrease, getValue, increase } from "../../slice/counterSlice"
 
-export const Counter = () => {
+const Counter = () => {
   const dispatch = useAppDispatch()
   const value = useAppSelector(getValue)
 
@@ -34,3 +34,5 @@ export const Counter = () => {
     </div>
   )
 }
+
+export default Counter
