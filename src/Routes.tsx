@@ -2,10 +2,11 @@ import {
   RouterProvider,
   RouterProviderProps,
   createBrowserRouter,
-} from "react-router-dom"
-import React, { Suspense, lazy } from "react"
+} from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import DefaultPage from "./features/shared/components/defaultPage/DefaultPage";
 
-const Home = lazy(() => import("./features/home/Home"))
+const Home = lazy(() => import("./features/home/Home"));
 
 const router = createBrowserRouter([
   {
@@ -16,14 +17,16 @@ const router = createBrowserRouter([
     path: "*",
     element: <>404 Not Found</>,
   },
-])
+]);
 
 const Routes: React.FC = () => {
   return (
     <Suspense fallback="...Loading">
-      <RouterProvider router={router} />
+      <DefaultPage>
+        <RouterProvider router={router} />
+      </DefaultPage>
     </Suspense>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

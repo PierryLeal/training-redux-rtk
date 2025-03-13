@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { counterSlice } from "./slice/counterSlice"
-import { digimonApi } from "./services/digimon"
+import { queryApi } from "./services/querys"
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
-    [digimonApi.reducerPath]: digimonApi.reducer,
+    [queryApi.reducerPath]: queryApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(digimonApi.middleware),
+    getDefaultMiddleware().concat(queryApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

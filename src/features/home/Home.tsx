@@ -1,17 +1,20 @@
-import { useGetAllDigimonCardQuery } from "../../store/services/digimon"
+import React from "react";
+import { CardStyle, Container } from "./Home.styles";
+import { useGetDigimonCardQuery } from "../../store/services/querys";
 
 const Home: React.FC = () => {
-  console.log("Home...")
-  const { data } = useGetAllDigimonCardQuery()
-
-  console.log("Digimons: ", data)
+  const { data } = useGetDigimonCardQuery({});
 
   return (
-    <div>
-      <span>{data?.data[0].name}</span>
-      <img src={data?.data[0].images.small} />
-    </div>
-  )
-}
+    <Container>
+      <CardStyle.Content>
+        {data?.data.map(({ images }, index) => (
+          <CardStyle.CardItem src={images.small} />
+        ))}
+        <CardStyle.LastItem></CardStyle.LastItem>
+      </CardStyle.Content>
+    </Container>
+  );
+};
 
-export default Home
+export default Home;
