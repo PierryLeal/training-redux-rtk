@@ -5,12 +5,12 @@ import {
 } from "react-router-dom"
 import React, { Suspense, lazy } from "react"
 
-const Counter = lazy(() => import("./features/counter/Counter"))
+const Home = lazy(() => import("./features/home/Home"))
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Counter,
+    Component: Home,
   },
   {
     path: "*",

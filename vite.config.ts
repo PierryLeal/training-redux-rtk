@@ -7,6 +7,13 @@ export default defineConfig({
   server: {
     open: true,
     port: 3000,
+    proxy: {
+      "/api/digimon": {
+        target: "https://apitcg.com",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/digimon/, "/api/digimon/cards"),
+      },
+    },
   },
   test: {
     globals: true,
