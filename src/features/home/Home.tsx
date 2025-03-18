@@ -4,6 +4,7 @@ import { useGetDigimonCardQuery } from "../../store/services/querys";
 import PagedList from "../shared/components/pagedList/PagedList";
 import { PaginationProps } from "../shared/components/pagedList/PagedList.types";
 import { DEFAULT_PAGE_PROPS } from "./../shared/components/pagedList/PagedList.consts";
+import Skeleton from "../shared/components/skeleton/Skeleton";
 
 const Home: React.FC = () => {
   const [pagination, setPagination] =
@@ -14,25 +15,33 @@ const Home: React.FC = () => {
     ...pagination,
     search,
   });
-  console.log("isLoading:", isLoading || isFetching);
+
   useEffect(() => {
-    if (data)
+    if (data) {
       setPagination({
         limit: data.limit,
         page: data.page,
         totalPages: data.totalPages,
       });
+    }
   }, [data]);
 
-  if (!data || isLoading || isFetching) return <span>Carregando</span>;
-
   return (
-    <PagedList pagination={pagination} setPagination={setPagination}>
+    <PagedList
+      pagination={pagination}
+      setPagination={setPagination}
+      setSearch={setSearch}
+      isLoading={isLoading}
+    >
       <Container>
         <CardStyle.Content>
-          {data?.data.map(({ images }, index) => (
-            <CardStyle.CardItem src={images.small} />
-          ))}
+          {!data || isLoading || isFetching
+            ? Array(12)
+                .fill("")
+                .map(() => <Skeleton $height="10rem" $borderRadius=".7rem" />)
+            : data.data.map(({ images, name }, index) => {
+                return <CardStyle.CardItem src={images.small} alt={name} />;
+              })}
           <CardStyle.LastItem></CardStyle.LastItem>
         </CardStyle.Content>
       </Container>

@@ -4,7 +4,7 @@ export const Theme = {
   primary: {
     main: "#b29146",
     dark: "#47360fcc",
-    light: "#cdac5f",
+    light: "#e9cc89",
   },
   black: "#0e0e0c",
 };

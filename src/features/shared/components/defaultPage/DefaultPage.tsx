@@ -1,8 +1,8 @@
+import Skeleton from "../skeleton/Skeleton";
 import { DefaultPageStyle, NavBarStyle } from "./DefaultPage.style";
 import { ReactElement } from "react";
 
 const DefaultPage: React.FC<{ children: ReactElement }> = ({ children }) => {
-  console.log("DefaultPage...");
   return (
     <DefaultPageStyle>
       <NavBarStyle.Container>

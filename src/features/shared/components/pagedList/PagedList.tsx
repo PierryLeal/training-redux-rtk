@@ -13,17 +13,21 @@ import { PageListStyle } from "./PagedList.styles";
 
 const PagedList: React.FC<{
   children: ReactElement;
+  isLoading: boolean;
   pagination: PaginationProps;
   setPagination: Dispatch<SetStateAction<PaginationProps>>;
-}> = ({ children, pagination, setPagination }) => {
+  setSearch: Dispatch<SetStateAction<string>>;
+}> = ({ children, isLoading, pagination, setPagination, setSearch }) => {
   return (
     <PageListStyle>
-      <Input></Input>
+      <Input isDisabled={isLoading} setSearch={setSearch}></Input>
       {children}
-      <Pagination
-        pagination={pagination}
-        setPagination={setPagination}
-      ></Pagination>
+      {!isLoading && (
+        <Pagination
+          pagination={pagination}
+          setPagination={setPagination}
+        ></Pagination>
+      )}
     </PageListStyle>
   );
 };

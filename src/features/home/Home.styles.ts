@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
   overflow: auto;
   margin: 0;
 `;
@@ -10,8 +11,9 @@ export const Container = styled.div`
 export const CardStyle = {
   Content: styled.div`
     display: grid;
-    width: fit-content;
-    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(auto-fill, 15.7rem);
     gap: 1rem;
     margin-right: 1rem;
     justify-items: center;
