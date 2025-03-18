@@ -35,6 +35,7 @@ export interface CardsReponseProps {
 }
 
 export interface CardsPayloadProps {
-  search?: string;
-  page?: number;
+  search: string;
+  page: number;
+  limit: number;
 }

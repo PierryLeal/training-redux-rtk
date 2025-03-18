@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
-export const DefaultPageStyle = styled.div``;
+export const DefaultPageStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
 
 export const NavBarStyle = {
   Container: styled.nav`
     display: flex;
     justify-content: center;
     position: sticky;
-    height: 3rem;
+    min-height: 3rem;
     width: 100%;
     top: 0;
   `,

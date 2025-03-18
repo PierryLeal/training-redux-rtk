@@ -4,8 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   overflow: auto;
-  max-height: 90vh;
-  margin: 1.5rem 1rem;
+  margin: 0;
 `;
 
 export const CardStyle = {
@@ -14,7 +13,7 @@ export const CardStyle = {
     width: fit-content;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin: 1rem;
+    margin-right: 1rem;
     justify-items: center;
     max-width: 900px;
   `,

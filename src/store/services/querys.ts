@@ -11,10 +11,10 @@ export const queryApi = createApi({
   }),
   endpoints: build => ({
     getDigimonCard: build.query<CardsReponseProps, CardsPayloadProps>({
-      query: ({ search = "", page = 1 }) => ({
+      query: ({ search, page = 1, limit = 28 }) => ({
         url: "",
         params: {
-          limit: 28,
+          limit,
           name: search,
           page,
         },
