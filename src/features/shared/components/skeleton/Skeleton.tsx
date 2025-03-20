@@ -8,6 +8,7 @@ const Skeleton: React.FC<skeletonProps> = ({
   $secondaryColor,
   $width,
   $borderRadius,
+  $aspectRatio,
 }) => {
   return (
     <Container
@@ -16,6 +17,7 @@ const Skeleton: React.FC<skeletonProps> = ({
       $secondaryColor={$secondaryColor}
       $width={$width}
       $borderRadius={$borderRadius}
+      $aspectRatio={$aspectRatio}
     />
   );
 };

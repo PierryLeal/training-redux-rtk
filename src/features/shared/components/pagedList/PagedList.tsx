@@ -22,12 +22,11 @@ const PagedList: React.FC<{
     <PageListStyle>
       <Input isDisabled={isLoading} setSearch={setSearch}></Input>
       {children}
-      {!isLoading && (
-        <Pagination
-          pagination={pagination}
-          setPagination={setPagination}
-        ></Pagination>
-      )}
+      <Pagination
+        isLoading={isLoading}
+        pagination={pagination}
+        setPagination={setPagination}
+      ></Pagination>
     </PageListStyle>
   );
 };

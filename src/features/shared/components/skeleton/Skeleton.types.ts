@@ -4,4 +4,5 @@ export interface skeletonProps {
   $width?: string;
   $height?: string;
   $borderRadius?: string;
+  $aspectRatio?: string;
 }

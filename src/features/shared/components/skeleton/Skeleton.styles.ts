@@ -14,6 +14,7 @@ export const Container = styled.span<skeletonProps>`
   display: flex;
   min-width: ${({ $width }) => $width || "100%"};
   min-height: ${({ $height }) => $height || "100%"};
+  aspect-ratio: ${({ $aspectRatio }) => $aspectRatio || "unset"};
   background: ${({
     theme,
     $primaryColor = theme.primary.dark,

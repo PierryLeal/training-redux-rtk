@@ -6,6 +6,7 @@ export const PageContent = styled.div`
   justify-content: flex-end;
   align-items: center;
   user-select: none;
+  min-height: 2rem;
 `;
 
 export const PageNumbers = styled.span<PageNumberProps>`

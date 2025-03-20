@@ -36,9 +36,15 @@ const Home: React.FC = () => {
       <Container>
         <CardStyle.Content>
           {!data || isLoading || isFetching
-            ? Array(12)
+            ? Array(20)
                 .fill("")
-                .map(() => <Skeleton $height="10rem" $borderRadius=".7rem" />)
+                .map(() => (
+                  <Skeleton
+                    $aspectRatio="1/1.4"
+                    $height="unset"
+                    $borderRadius=".7rem"
+                  />
+                ))
             : data.data.map(({ images, name }, index) => {
                 return <CardStyle.CardItem src={images.small} alt={name} />;
               })}

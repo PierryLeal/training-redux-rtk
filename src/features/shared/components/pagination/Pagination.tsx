@@ -5,7 +5,8 @@ import { PageArrow, PageContent, PageNumbers } from "./Pagination.styles";
 const Pagination: React.FC<{
   pagination: PaginationProps;
   setPagination: Dispatch<SetStateAction<PaginationProps>>;
-}> = ({ pagination, setPagination }) => {
+  isLoading: boolean;
+}> = ({ pagination, setPagination, isLoading }) => {
   const { page, totalPages, limit } = pagination;
   const pages = useMemo(
     () =>
@@ -40,40 +41,44 @@ const Pagination: React.FC<{
 
   return (
     <PageContent>
-      <PageArrow
-        onClick={() =>
-          setPagination(prev =>
-            page !== 1 ? { ...prev, page: prev.page - 1 } : prev
-          )
-        }
-      >
-        «
-      </PageArrow>
-      {totalPages &&
-        pages.map((value, index) => (
-          <PageNumbers
-            key={`${value}-${index}`}
-            $selected={page === value}
-            $invalid={value === "..."}
+      {!isLoading && (
+        <>
+          <PageArrow
             onClick={() =>
-              setPagination(prev => ({
-                ...prev,
-                page: typeof value === "number" ? value : page,
-              }))
+              setPagination(prev =>
+                page !== 1 ? { ...prev, page: prev.page - 1 } : prev
+              )
             }
           >
-            {value}
-          </PageNumbers>
-        ))}
-      <PageArrow
-        onClick={() =>
-          setPagination(prev =>
-            page !== totalPages ? { ...prev, page: prev.page + 1 } : prev
-          )
-        }
-      >
-        »
-      </PageArrow>
+            «
+          </PageArrow>
+          {totalPages &&
+            pages.map((value, index) => (
+              <PageNumbers
+                key={`${value}-${index}`}
+                $selected={page === value}
+                $invalid={value === "..."}
+                onClick={() =>
+                  setPagination(prev => ({
+                    ...prev,
+                    page: typeof value === "number" ? value : page,
+                  }))
+                }
+              >
+                {value}
+              </PageNumbers>
+            ))}
+          <PageArrow
+            onClick={() =>
+              setPagination(prev =>
+                page !== totalPages ? { ...prev, page: prev.page + 1 } : prev
+              )
+            }
+          >
+            »
+          </PageArrow>
+        </>
+      )}
     </PageContent>
   );
 };

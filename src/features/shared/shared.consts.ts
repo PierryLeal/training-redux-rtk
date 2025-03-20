@@ -7,4 +7,5 @@ export const Theme = {
     light: "#e9cc89",
   },
   black: "#0e0e0c",
+  shadow: "#0e0e0c47",
 };
