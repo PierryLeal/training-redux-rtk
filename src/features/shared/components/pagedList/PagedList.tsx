@@ -1,13 +1,6 @@
-import React, {
-  Dispatch,
-  ReactElement,
-  SetStateAction,
-  useMemo,
-  useState,
-} from "react";
+import React, { Dispatch, ReactElement, SetStateAction } from "react";
 import Input from "../Input/Input";
 import { PaginationProps } from "./PagedList.types";
-import { DEFAULT_PAGE_PROPS } from "./PagedList.consts";
 import Pagination from "../pagination/Pagination";
 import { PageListStyle } from "./PagedList.styles";
 
@@ -20,7 +13,11 @@ const PagedList: React.FC<{
 }> = ({ children, isLoading, pagination, setPagination, setSearch }) => {
   return (
     <PageListStyle>
-      <Input isDisabled={isLoading} setSearch={setSearch}></Input>
+      <Input
+        isDisabled={isLoading}
+        setSearch={setSearch}
+        placeholder="Card Name"
+      ></Input>
       {children}
       <Pagination
         isLoading={isLoading}

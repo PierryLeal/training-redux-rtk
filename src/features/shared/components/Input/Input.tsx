@@ -4,8 +4,9 @@ import { InputStyled } from "./Input.styles";
 const Input: React.FC<{
   isDisabled: boolean;
   setSearch: Dispatch<SetStateAction<string>>;
+  placeholder: string;
   icon?: string;
-}> = ({ isDisabled, setSearch, icon }) => {
+}> = ({ isDisabled, setSearch, placeholder, icon }) => {
   return (
     <InputStyled.Content $isDisabled={isDisabled} $maxWidth="10rem">
       {icon && <img src={icon} />}
@@ -14,7 +15,7 @@ const Input: React.FC<{
         onChange={e => setSearch(e.target.value)}
       />
       <InputStyled.Placeholder className="placeholder">
-        dawdawd
+        <span>{placeholder}</span>
       </InputStyled.Placeholder>
     </InputStyled.Content>
   );

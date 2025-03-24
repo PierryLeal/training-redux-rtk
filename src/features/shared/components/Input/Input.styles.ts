@@ -35,5 +35,8 @@ export const InputStyled = {
     font-size: 0.85rem;
     pointer-events: none;
     transition: 0.3s;
+    span {
+      opacity: 0.6;
+    }
   `,
 };

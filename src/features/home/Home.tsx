@@ -5,17 +5,24 @@ import PagedList from "../shared/components/pagedList/PagedList";
 import { PaginationProps } from "../shared/components/pagedList/PagedList.types";
 import { DEFAULT_PAGE_PROPS } from "./../shared/components/pagedList/PagedList.consts";
 import Skeleton from "../shared/components/skeleton/Skeleton";
+import useDebounce from "../shared/hooks/UseDebounce";
 
 const Home: React.FC = () => {
   const [pagination, setPagination] =
     useState<PaginationProps>(DEFAULT_PAGE_PROPS);
   const [search, setSearch] = useState<string>("");
+  const debounce = useDebounce(search);
 
-  const { data, isLoading, isFetching } = useGetDigimonCardQuery({
-    ...pagination,
-    search,
-  });
-
+  const { data, isLoading, isFetching } = useGetDigimonCardQuery(
+    {
+      ...pagination,
+      search,
+    },
+    {
+      skip: !debounce,
+    }
+  );
+  const loading = isLoading || isFetching || !debounce;
   useEffect(() => {
     if (data) {
       setPagination({
@@ -30,12 +37,13 @@ const Home: React.FC = () => {
     <PagedList
       pagination={pagination}
       setPagination={setPagination}
+      search={search}
       setSearch={setSearch}
-      isLoading={isLoading}
+      isLoading={loading}
     >
       <Container>
         <CardStyle.Content>
-          {!data || isLoading || isFetching
+          {!data || loading
             ? Array(20)
                 .fill("")
                 .map(() => (
