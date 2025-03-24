@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const [pagination, setPagination] =
     useState<PaginationProps>(DEFAULT_PAGE_PROPS);
   const [search, setSearch] = useState<string>("");
-  const debounce = useDebounce(search);
+  const debounce = useDebounce(search, 500);
 
   const { data, isLoading, isFetching } = useGetDigimonCardQuery(
     {
@@ -37,13 +37,12 @@ const Home: React.FC = () => {
     <PagedList
       pagination={pagination}
       setPagination={setPagination}
-      search={search}
       setSearch={setSearch}
       isLoading={loading}
     >
       <Container>
         <CardStyle.Content>
-          {!data || loading
+          {loading
             ? Array(20)
                 .fill("")
                 .map(() => (
@@ -53,7 +52,7 @@ const Home: React.FC = () => {
                     $borderRadius=".7rem"
                   />
                 ))
-            : data.data.map(({ images, name }, index) => {
+            : (data?.data ?? []).map(({ images, name }, index) => {
                 return <CardStyle.CardItem src={images.small} alt={name} />;
               })}
           <CardStyle.LastItem></CardStyle.LastItem>
